@@ -132,12 +132,12 @@ class LocalServiceBuilder:
     def __call__(self, local_music_location: str, **_ignored: Any) -> LocalService:
         return LocalService(local_music_location)
 
+    def authorize(self, *args: Any, **kwargs: Any) -> Any:
+        pass
+
     def __repr__(self) -> str:
         return f"LocalServiceBuilder()"
 
-
-# def create_local_music_service(local_music_location: str, **_ignored: Any) -> LocalService:
-#     return LocalService(local_music_location)
 
 
 class ObjectFactory:
@@ -160,8 +160,8 @@ class ObjectFactory:
             raise ValueError(key)
         return builder(**kwargs)
 
-    def list_all_services(self) -> List[MusicService]:
-        return list(self._builders.values())
+    def show_all_service_builders(self) -> Dict[str, MusicServiceBuilder]:
+        return {k.name:v for k, v in self._builders.items()}
 
 
 class MusicServiceProvider(ObjectFactory):

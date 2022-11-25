@@ -25,6 +25,8 @@ def main() -> int:
     spotify2 = music.services.get(MusicServiceType.SPOTIFY, **config)
     print(f"id(spotify) == id(spotify2): {id(spotify) == id(spotify2)}")
 
+    print(music.services.show_all_service_builders())
+
     return 0
 
 
